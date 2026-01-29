@@ -14,14 +14,42 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
     texlive-latex-base \
     texlive-latex-recommended \
     texlive-latex-extra \
+    texlive-lang-german \
+    texlive-fonts-recommended \
+    texlive-fonts-extra \
+    texlive-science \
+    texlive-pictures \
+    texlive-bibtex-extra \
+    texlive-humanities \
+    texlive-xetex \
     latexmk \
     chktex \
- && pip3 install --no-cache-dir Pygments \
- && ln -snf /usr/share/zoneinfo/$TZ /etc/localtime \
- && echo $TZ > /etc/timezone \
- && rm -rf /var/lib/apt/lists/*
+    texlive-luatex \
+    texlive-pstricks \
+    texlive-metapost \
+    texlive-publishers \
+    texlive-plain-generic \
+    texlive-fonts-extra \
+    biber \
+    dvipng \
+    epstool \
+    inkscape \
+    unzip \
+    git \
+    ghostscript \
+    && pip3 install --break-system-packages Pygments latexminted \
+    && ln -snf /usr/share/zoneinfo/$TZ /etc/localtime \
+    && echo $TZ > /etc/timezone \
+    && rm -rf /var/lib/apt/lists/*
 
-# Use the existing devcontainer user
+ARG USERNAME=devcontainer
+ARG USER_UID=1001
+ARG USER_GID=1001
+
+RUN groupadd --gid $USER_GID $USERNAME \
+    && useradd -s /bin/bash --uid $USER_UID --gid $USER_GID -m $USERNAME \
+    && chown -R $USERNAME:$USERNAME /home/$USERNAME
+    
 USER devcontainer
 WORKDIR /home/devcontainer/workspace
 
