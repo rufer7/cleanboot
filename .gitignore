@@ -5,6 +5,8 @@
 *.run.xml
 *.bcf
 *-backups
+.out/
+script.pdf
 
 # Java build artifacts
 *.class
