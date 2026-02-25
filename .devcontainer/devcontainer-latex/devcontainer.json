@@ -1,0 +1,68 @@
+{
+  "name": "latex-devcontainer-secure",
+  "build": {
+    "dockerfile": "Dockerfile",
+    "context": "."
+  },
+  "workspaceFolder": "/home/devcontainer/workspace",
+  "workspaceMount": "source=${localWorkspaceFolder},target=/home/devcontainer/workspace,type=bind,consistency=cached",
+  "remoteUser": "devcontainer",
+  "shutdownAction": "stopContainer",
+  "customizations": {
+    "vscode": {
+      "extensions": [
+        "james-yu.latex-workshop",
+        "aaron-bond.better-comments",
+        "vscodevim.vim",
+        "shardulm94.trailing-spaces",
+        "stkb.rewrap"
+      ],
+      "settings": {
+        "files.eol": "\n",
+        "editor.formatOnSave": true,
+        "files.associations": {
+          "*.tex": "latex"
+        },
+        "latex-workshop.latex.autoClean.run": "onBuilt",
+        "latex-workshop.latex.clean.subfolder.enabled": true,
+        "latex-workshop.latex.recipes": [
+          {
+            "name": "Clean Build",
+            "tools": ["clean-build"]
+          },
+          {
+            "name": "Build Script (latexmk)",
+            "tools": ["latexmk-build"]
+          }
+        ],
+        "latex-workshop.latex.tools": [
+          {
+            "name": "clean-build",
+            "command": "bash",
+            "args": [
+              "-lc",
+              "rm -rf %DIR%/.out && rm -f *.bbl *.bcf *.blg *.run.xml quit.tex script.pdf && latexmk --shell-escape -synctex=1 -interaction=nonstopmode -file-line-error -pdf -halt-on-error -auxdir=%DIR%/.out -outdir=%DIR%/.out -out2dir=%DIR%/.out %DOC% && cp -f \"%DIR%/.out/%DOCFILE%.pdf\" \"%DIR%/%DOCFILE%.pdf\""
+            ]
+          },
+          {
+            "name": "latexmk-build",
+            "command": "latexmk",
+            "args": ["-pdf", "-shell-escape", "-interaction=nonstopmode", "%DOC%"]
+          }
+        ],
+        "latex-workshop.linting.chktex.enabled": true,
+        "latex-workshop.latexindent.enabled": true,
+        "latex-workshop.latexindent.exec.path": "latexindent",
+        "latex-workshop.synctex.afterBuild.enabled": true,
+        "latex-workshop.latex.outDir": "%DIR%/.out",
+        "latex-workshop.view.pdf.viewer": "tab"
+      }
+    }
+  },
+  "features": {},
+  "hostRequirements": {
+    "cpus": 4,
+    "memory": "8gb",
+    "storage": "10gb"
+  }
+}
