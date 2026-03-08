@@ -1535,19 +1535,19 @@ bewusst eine Abhängigkeit in Kauf nehmen. Ebenso, was den funktionalen Kern
 angeht. Es ist eine (zugegeben extrem saubere) Möglichkeit eine 
 Domäne in Code abzubilden. Aber wir wissen ja aus unzähligen Projekten davor,
 dass es noch viele weitere gute Möglichkeiten gibt dies zu tun. 
-Die Lösung, die wir hier angeschaut haben bringt klar mehr Komplexität. Das ist
+Die Lösung, die wir hier angeschaut haben, bringt klar mehr Komplexität. Das ist
 erst mal schlecht - es kommt jedoch darauf an, welche Form von Komplexität man 
 anhäuft (\textit{incidental} vs. \textit{accidental} \textit{complexity}).
 Gegen \textit{incidental complexity} kann man nicht viel machen - die passiert
 einfach, oder liegt einfach vor. Wenn die modellierte Domäne komplex ist, wird
 das automatisch auch komplexeren Code nach sich ziehen (oder zumindest mehr 
 Code). Wer jetzt denkt, dass
-das Domänenmodell in unserem naiven Code den Sachverhalt viel weniger Komplex 
+das Domänenmodell in unserem naiven Code den Sachverhalt viel weniger komplex 
 abbilden konnte, der irrt insofern, als dass das Modell es verpasst hat die 
 Komplexität überhaupt abzubilden. Im Endeffekt ist das noch schlimmer - 
-erforderliche Komplexität die in Code und Tests ignoriert wird. Das ist 
+erforderliche Komplexität, die in Code und Tests ignoriert wird. Das ist 
 natürlich ein Problem denn so entsteht fehlerhafte Software. Durch fehlende
-Validierung und ein Modell, dass inkonsistente und falsche Repräsentationen
+Validierung und ein Modell, das inkonsistente und falsche Repräsentationen
 erlaubt entstehen auch schnell echte Sicherheitsprobleme. So oder so, die
 Domäne muss schon adäquat abgebildet werden.
 Anders sieht es bei der Zwiebel-, hexagonalen oder Ports und Adapter- 
